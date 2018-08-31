@@ -2,11 +2,9 @@ import futuquant as ft
 import pandas as pd
 import talib
 
-from python import ckTelegram
-
+from python import CkTelegram
 
 RSI_NUM = 14
-# subscribe Kline
 
 stock_code_list = ["US.AMZN",
                    "HK.00003",
@@ -31,10 +29,6 @@ def _example_cur_kline(quote_ctx):
     """
     获取当前K线，输出 股票代码，时间，开盘价，收盘价，最高价，最低价，成交量，成交额
     """
-
-    returnDf = pd.DataFrame()
-    returnDf.append()
-
     ret_status, ret_data = quote_ctx.subscribe(stock_code_list, sub_type_list)
     if ret_status != ft.RET_OK:
         print(ret_data)
@@ -70,8 +64,8 @@ def _example_cur_kline(quote_ctx):
         output_message += i.note + '\n'
 
     print(output_message)
-    # ckTelegram().send_message_group(output_message)
-    ckTelegram().send_message_ck(output_message)
+    CkTelegram().send_message_group(output_message)
+    # CkTelegram().send_message_ck(output_message)
 
 if __name__ == "__main__":
     quote_ctx = ft.OpenQuoteContext()

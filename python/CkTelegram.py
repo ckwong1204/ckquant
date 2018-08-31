@@ -1,5 +1,5 @@
 # T : telegram
-class ckTelegram:
+class CkTelegram:
     import telegram
 
     T_TOKEN = "456425019:AAGPvI1Gi4LdD9zaOz9l9E0S2BuYefcJpDE"
