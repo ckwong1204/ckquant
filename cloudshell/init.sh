@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 cd ~
 rm -r ta-lib
 tar -xzf ta-lib-0.4.0-src.tar.gz
