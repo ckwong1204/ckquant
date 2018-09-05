@@ -1,5 +1,4 @@
 import futuquant as ft
-#from futuquant.ck import ckTelegram
 import talib
 
 RSI_NUM = 13
@@ -17,13 +16,9 @@ stock_code_list = ["US.AMZN",
                    "US.CRM"
                    ]
 sub_type_list = [ft.SubType.K_1M,
-                 ft.SubType.K_5M,
                  ft.SubType.K_15M,
                  ft.SubType.K_30M,
-                 ft.SubType.K_60M,
-                 ft.SubType.K_DAY,
-                 ft.SubType.K_WEEK,
-                 ft.SubType.K_MON]
+                 ft.SubType.K_DAY]
 
 # T : telegram
 class ckTelegram:
@@ -47,9 +42,6 @@ class ckTelegram:
 
 
 def _example_cur_kline(quote_ctx):
-    """
-    获取当前K线，输出 股票代码，时间，开盘价，收盘价，最高价，最低价，成交量，成交额
-    """
     ret_status, ret_data = quote_ctx.subscribe(stock_code_list, sub_type_list)
     if ret_status != ft.RET_OK:
         print(ret_data)
@@ -64,7 +56,7 @@ def _example_cur_kline(quote_ctx):
     resultList = []
 
     for code in stock_code_list:
-        for ktype in [ft.SubType.K_DAY, ft.SubType.K_30M]:  # ft.SubType.K_15M, ft.SubType.K_1M
+        for ktype in sub_type_list:  # ft.SubType.K_15M, ft.SubType.K_1M
             ret_code, ret_data = quote_ctx.get_cur_kline(code, 1000, ktype)
             if ret_code == ft.RET_ERROR:
                 print(code, ktype, ret_data)
@@ -73,20 +65,19 @@ def _example_cur_kline(quote_ctx):
             print("%s KLINE %s" % (code, ktype))
             kline_table['rsi13'] = talib.RSI(kline_table['close'], RSI_NUM)
             b = kline_table.iloc[-1]
-            # b.at["note"] = b.code + ' ' + str(b.close) + ': rsi13(' + ktype + ') ' + str(round(b.rsi13))
-            b.at["note"] = '{:<8} {:<9.2f} {:<9.2f}'.format(b.code, b.rsi13, b.close)
+            b.at["note"] = '{:<8} {:<9.2f} {:<5} {:<9.2f} '.format(b.code, b.close, str(ktype[2:]), b.rsi13)
 
             # print(kline_table)
             # print("\n\n")
             resultList.append(b)
 
-    outputMessage = 'RSI update: \n{:<6} {:<11} {:<4}\n'.format('Code', 'rsi'+str(RSI_NUM)+str(ktype[2:]), 'close')
+    outputMessage = 'RSI update: \n{:<8} {:<9} {:<5} {:<9}\n'.format('Code', 'close', 'ktype', 'rsi')
     for i in resultList:
         outputMessage += i.note + '\n'
         
     print(""+outputMessage)
-    ckTelegram().send_message_group(outputMessage)
-#    ckTelegram().send_message_ck(outputMessage)
+    # ckTelegram().send_message_group(outputMessage)
+    # ckTelegram().send_message_ck(outputMessage)
 
 if __name__ == "__main__":
     quote_ctx = ft.OpenQuoteContext()

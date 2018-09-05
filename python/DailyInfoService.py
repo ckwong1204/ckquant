@@ -64,8 +64,9 @@ def _example_cur_kline(quote_ctx):
         output_message += i.note + '\n'
 
     print(output_message)
-    CkTelegram().send_message_group(output_message)
-    # CkTelegram().send_message_ck(output_message)
+    # CkTelegram().send_message_group(output_message)
+    CkTelegram().send_message_ck(output_message)
+
 
 if __name__ == "__main__":
     quote_ctx = ft.OpenQuoteContext()
