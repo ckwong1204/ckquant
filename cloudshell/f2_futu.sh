@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 echo "-----init-----"
 cd ~/ckquant/cloudshell/
 ./init.sh

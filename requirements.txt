@@ -1,0 +1,3 @@
+futuquant
+python-telegram-bot
+talib
