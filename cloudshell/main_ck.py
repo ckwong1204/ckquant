@@ -4,21 +4,16 @@ import talib
 RSI_NUM = 13
 # subscribe Kline
 
-stock_code_list = ["US.AMZN",
-                   "US.MSFT",
-                   "US.SPXL",
-                   "US.HACK",
-                   "US.NVDA",
-                   "US.ADBE",
-                   "US.MA",
-                   "US.COST",
-                   "US.UNH",
-                   "US.CRM"
-                   ]
-sub_type_list = [ft.SubType.K_15M,
-                 ft.SubType.K_30M,
-                 ft.SubType.K_DAY]
-
+stock_code_list = [
+    "US.AMZN", "US.MSFT", "US.SPXL", "US.HACK", "US.NVDA", "US.ADBE",
+    "US.MA", "US.COST", "US.UNH", "US.CRM", "US.AAPL"
+]
+sub_type_list = [
+    ft.SubType.K_15M, ft.SubType.K_30M, ft.SubType.K_DAY, ft.SubType.RT_DATA
+]
+loop_type_list = [
+    ft.SubType.K_15M, ft.SubType.K_30M, ft.SubType.K_DAY
+]
 
 def _example_cur_kline(quote_ctx):
     ret_status, ret_data = quote_ctx.subscribe(stock_code_list, sub_type_list)
@@ -33,36 +28,60 @@ def _example_cur_kline(quote_ctx):
     print(ret_data)
 
     resultList = []
+    result_dict = {}
 
-    for code in stock_code_list:
-        for ktype in sub_type_list:  # ft.SubType.K_15M, ft.SubType.K_1M
-            ret_code, ret_data = quote_ctx.get_cur_kline(code, 1000, ktype)
+    for stock_code in stock_code_list:
+        for ktype in loop_type_list:  # ft.SubType.K_15M, ft.SubType.K_1M
+
+            ret_code, ret_data = quote_ctx.get_cur_kline(stock_code, 300, ktype)
             if ret_code == ft.RET_ERROR:
-                print(code, ktype, ret_data)
+                print("failure", stock_code, ktype)
                 exit()
-            kline_table = ret_data
-            print("%s KLINE %s" % (code, ktype))
-            kline_table['rsi13'] = talib.RSI(kline_table['close'], RSI_NUM)
-            b = kline_table.iloc[-1]
-            b.at["note"] = '{:<8} {:<9.2f} {:<5} {:<9.2f} '.format(b.code, b.close, str(ktype[2:]), b.rsi13)
+            print("%s KLINE %s success" % (stock_code, ktype))
 
-            # print(kline_table)
-            # print("\n\n")
-            resultList.append(b)
+            # code                         US.AMZN
+            # time_key         2018-09-14 16:00:00
+            # open                         1968.42
+            # close                        1970.19
+            # high                          1971.5
+            # low                          1967.01
+            # volume                        554863
+            # turnover                 1.09291e+09
+            # pe_ratio                           0
+            # turnover_rate                      0
+            # last_close                   1968.28
 
-    outputMessage = 'RSI update: \n{:<8} {:<9} {:<5} {:<9}\n'.format('Code', 'close', 'ktype', 'rsi')
-    for i in resultList:
-        outputMessage += i.note + '\n'
-        
-    print(""+outputMessage)
-    # ckTelegram().send_message_group(outputMessage)
-    ckTelegram().send_message_ck(outputMessage)
+            if( stock_code not in result_dict ):
+                result_dict[stock_code] = {}
+                last_row = ret_data.iloc[-1]
+                result_dict[stock_code]["code"] = last_row["code"]
+                result_dict[stock_code]["close"] = last_row["close"]
+
+            result_dict[stock_code]["rsi" + str(RSI_NUM)] = talib.RSI(ret_data['close'], RSI_NUM).iloc[-1]
+
+    return result_dict
+
+
+def print_result_dict(result_dict):
+    print(result_dict)
+    # b.at["note"] = '{:<8} {:<9.2f} {:<5} {:<9.2f} '.format(b.code, b.close, str(ktype[2:]), b.rsi13)
+    # outputMessage = 'RSI update: \n{:<8} {:<9} {:<5} {:<9}\n'.format('Code', 'close', 'ktype', 'rsi')
+    # for i in resultList:
+    #     outputMessage += i.note + '\n'
+    #
+    # print("" + outputMessage)
+    # # ckTelegram().send_message_group(outputMessage)
+    # ckTelegram().send_message_ck(outputMessage)
+
 
 if __name__ == "__main__":
     quote_ctx = ft.OpenQuoteContext()
-    _example_cur_kline(quote_ctx)
+    result_dict = _example_cur_kline(quote_ctx)
+    print_result_dict(result_dict)
     
     quote_ctx.close()
+
+    # quote_ctx.get_rt_ticker('HK.00700', 10)
 
 
 
