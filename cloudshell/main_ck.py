@@ -15,8 +15,7 @@ stock_code_list = ["US.AMZN",
                    "US.UNH",
                    "US.CRM"
                    ]
-sub_type_list = [ft.SubType.K_1M,
-                 ft.SubType.K_15M,
+sub_type_list = [ft.SubType.K_15M,
                  ft.SubType.K_30M,
                  ft.SubType.K_DAY]
 
@@ -77,7 +76,7 @@ def _example_cur_kline(quote_ctx):
         
     print(""+outputMessage)
     # ckTelegram().send_message_group(outputMessage)
-    # ckTelegram().send_message_ck(outputMessage)
+    ckTelegram().send_message_ck(outputMessage)
 
 if __name__ == "__main__":
     quote_ctx = ft.OpenQuoteContext()
