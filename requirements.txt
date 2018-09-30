@@ -1,3 +1,8 @@
 futuquant
 python-telegram-bot
 talib
+
+pamdas
+pandas-datareader
+beautifulsoup4
+scikit-learn
