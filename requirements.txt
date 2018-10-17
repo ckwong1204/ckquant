@@ -2,7 +2,13 @@ futuquant
 python-telegram-bot
 talib
 
-pamdas
+pandas
 pandas-datareader
 beautifulsoup4
 scikit-learn
+
+numpy
+scipy
+matplotlib
+pandas
+quandl
