@@ -48,7 +48,7 @@ def login_cloudconsole(driver):
     time.sleep(1)
     fill(driver, '#password > div.aCsJod.oJeWuf > div > div.Xb9hP > input', "hkjayjay")
     click(driver, '#passwordNext > content')
-    time.sleep(15)
+    time.sleep(18)
     click(driver,
           '#devshell-editor-app > div.p6n-devshell-editor-app-header > div:nth-child(3) > div > button > div > md-icon')
 
@@ -100,6 +100,14 @@ try:
     input_console_command(driver, "date")
     input_console_command(driver, "cd ~/ckquant/cloudshell")
     input_console_command(driver, "./f2_futu.sh")
+
+    # close all connection  ##################
+    time.sleep(100)
+    input_console_command(driver, "exit")
+    time.sleep(1)
+    swith_to_devshell_n(driver, 0)
+    input_console_command(driver, "exit")
+    input_console_command(driver, "exit")
 
 except:
     print("Unexpected error:", sys.exc_info()[0])
