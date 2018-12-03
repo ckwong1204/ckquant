@@ -24,14 +24,14 @@ TIME_KEY = 'time_key'
 def getDataFromFutu(code='US.AMZN', start='2010-01-01'):
     import futuquant as ft
     quote_ctx = ft.OpenQuoteContext(host='127.0.0.1', port=11111)
-    ret, data = quote_ctx.get_history_kline(code, start, end='2099-01-01', ktype='K_30M')
+    ret, data = quote_ctx.get_history_kline(code, start, end='2099-01-01', ktype='K_DAY')
     return data
 
 style.use('ggplot')
 
 df = getDataFromFutu(code='US.AMZN', start='2010-01-01')
 
-print(df.head())
+print(df.tail())
 
 df = df[[OPEN, HIGH, LOW, CLOSE, VOLUME, TIME_KEY]]
 df.set_index(TIME_KEY, inplace=True)
@@ -39,7 +39,7 @@ df['HL_PCT'] = (df[HIGH] - df[LOW]) / df[CLOSE] * 100.0
 df['PCT_change'] = (df[CLOSE] - df[OPEN]) / df[OPEN] * 100.0
 
 df = df[[CLOSE, 'HL_PCT', 'PCT_change', VOLUME]]
-print(df.head())
+print(df.tail())
 
 forecast_col = CLOSE
 df.fillna(value=-99999, inplace=True)
