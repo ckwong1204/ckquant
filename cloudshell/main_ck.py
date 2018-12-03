@@ -90,8 +90,8 @@ def print_result_dict(result_dict):
     output_message = df.to_string(index=False)
     print(output_message)
 
-    # ckTelegram().send_message_group(output_message)
-    ckTelegram().send_message_ck(output_message)
+    ckTelegram().send_message_group(output_message)
+    # ckTelegram().send_message_ck(output_message)
 
 
 if __name__ == "__main__":

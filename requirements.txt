@@ -1,6 +1,4 @@
-futuquant
 python-telegram-bot
-talib
 
 pandas
 pandas-datareader
