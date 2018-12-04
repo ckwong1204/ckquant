@@ -48,7 +48,7 @@ def login_cloudconsole(driver):
     time.sleep(1)
     fill(driver, '#password > div.aCsJod.oJeWuf > div > div.Xb9hP > input', "hkjayjay")
     click(driver, '#passwordNext > content')
-    time.sleep(18)
+    time.sleep(60)
     click(driver,
           '#devshell-editor-app > div.p6n-devshell-editor-app-header > div:nth-child(3) > div > button > div > md-icon')
 
