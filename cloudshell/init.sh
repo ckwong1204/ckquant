@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 cd ~/ta-lib/
 ./configure --prefix=/usr
+make
+sudo make install
 python3 -m pip install --upgrade Ta-Lib
 
 
