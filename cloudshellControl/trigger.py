@@ -1,5 +1,6 @@
 import sys
 import time
+import datetime
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -49,8 +50,6 @@ def login_cloudconsole(driver):
     fill(driver, '#password > div.aCsJod.oJeWuf > div > div.Xb9hP > input', "hkjayjay")
     click(driver, '#passwordNext > content')
     time.sleep(60)
-    click(driver,
-          '#devshell-editor-app > div.p6n-devshell-editor-app-header > div:nth-child(3) > div > button > div > md-icon')
 
 
 def input_console_command(driver, command):
@@ -81,6 +80,8 @@ def add_new_devshell(driver):
 
 
 try:
+    print("Trigger time: ", datetime.datetime.now())
+
     chrome_path = ".\chromedriver.exe"
     driver = webdriver.Chrome(chrome_path)
 
@@ -109,7 +110,12 @@ try:
     input_console_command(driver, "exit")
     input_console_command(driver, "exit")
 
+    print("Trigger done: ", datetime.datetime.now())
+
 except:
     print("Unexpected error:", sys.exc_info()[0])
 finally:
     driver.quit()
+
+# cmd for "Task Scheduler" for this trigger
+# C:\Work\Futu\ckquant\cloudshellControl\trigger.py >> log.txt

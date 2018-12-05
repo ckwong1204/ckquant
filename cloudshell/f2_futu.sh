@@ -7,3 +7,4 @@ echo "-----python-----"
 
 cd ~/ckquant/cloudshell/
 python3 main.py
+python3 main_ck.py
