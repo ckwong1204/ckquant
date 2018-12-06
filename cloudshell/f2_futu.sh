@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+echo "-----update git-----"
+cd ~/ckquant/
+./gitpull.sh
+
 echo "-----init-----"
 cd ~/ckquant/cloudshell/
 ./init.sh
