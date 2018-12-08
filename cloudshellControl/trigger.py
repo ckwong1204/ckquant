@@ -1,8 +1,8 @@
 import sys
 import time
 import datetime
+import calendar
 
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -79,43 +79,49 @@ def add_new_devshell(driver):
     time.sleep(10)
 
 
-try:
-    print("Trigger time: ", datetime.datetime.now())
+def main():
+    print("Trigger time: ", datetime.datetime.now(), calendar.day_name[datetime.datetime.today().weekday()])
+    if datetime.datetime.today().weekday() > 4:
+        return
 
-    chrome_path = ".\chromedriver.exe"
-    driver = webdriver.Chrome(chrome_path)
+    try:
+        chrome_path = ".\chromedriver.exe"
+        driver = webdriver.Chrome(chrome_path)
 
-    login_cloudconsole(driver)
+        login_cloudconsole(driver)
 
-    # tab 1   ###############################
-    swith_to_devshell_n(driver, 0)
-    input_console_command(driver, "date")
-    input_console_command(driver, "cd ~/ckquant/cloudshell")
-    input_console_command(driver, "./f1_run.sh")
+        # tab 1   ###############################
+        swith_to_devshell_n(driver, 0)
+        input_console_command(driver, "date")
+        input_console_command(driver, "cd ~/ckquant/cloudshell")
+        input_console_command(driver, "./f1_run.sh")
 
-    # new tab ###############################
-    add_new_devshell(driver)
+        # new tab ###############################
+        add_new_devshell(driver)
 
-    # tab 2   ###############################
-    swith_to_devshell_n(driver, 1)
-    input_console_command(driver, "date")
-    input_console_command(driver, "cd ~/ckquant/cloudshell")
-    input_console_command(driver, "./f2_futu.sh")
+        # tab 2   ###############################
+        swith_to_devshell_n(driver, 1)
+        input_console_command(driver, "date")
+        input_console_command(driver, "cd ~/ckquant/cloudshell")
+        input_console_command(driver, "./f2_futu.sh")
 
-    # close all connection  ##################
-    time.sleep(100)
-    input_console_command(driver, "exit")
-    time.sleep(1)
-    swith_to_devshell_n(driver, 0)
-    input_console_command(driver, "exit")
-    input_console_command(driver, "exit")
+        # close all connection  ##################
+        time.sleep(100)
+        input_console_command(driver, "exit")
+        time.sleep(1)
+        swith_to_devshell_n(driver, 0)
+        input_console_command(driver, "exit")
+        input_console_command(driver, "exit")
 
-    print("Trigger done: ", datetime.datetime.now())
+        print("Trigger done: ", datetime.datetime.now())
 
-except:
-    print("Unexpected error:", sys.exc_info()[0])
-finally:
-    driver.quit()
+    except:
+        print("Unexpected error:", sys.exc_info()[0])
+    finally:
+        driver.quit()
+
+if __name__ == '__main__':
+    main()
 
 # cmd for "Task Scheduler" for this trigger
 # C:\Work\Futu\ckquant\cloudshellControl\trigger.py >> log.txt
