@@ -76,7 +76,7 @@ def swith_to_devshell_n(driver, devshell_n):
 def add_new_devshell(driver):
     driver.switch_to.default_content()
     click(driver,
-          "body > pan-shell > div > div.pan-shell-main-container.layout-row.flex > div > div.layout-row > pan-lazy-loader > pan-dev-shell > div > div.p6n-devshell-header.p6n-action-bar > pan-devshell-new-tab-menu > div > jfk-button > pan-icon > div > md-icon")
+          "body > pan-shell > div > div.pan-shell-main-container.layout-row.flex > div > div.layout-row > pan-lazy-loader > pan-dev-shell > div > div.p6n-devshell-header.p6n-action-bar > div:nth-child(5) > pan-devshell-new-tab-menu > div > jfk-button > pan-icon")
     time.sleep(10)
 
 
