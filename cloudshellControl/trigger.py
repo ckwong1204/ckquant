@@ -60,7 +60,6 @@ def input_console_command(driver, command):
     driver.find_element_by_tag_name('body').send_keys(Keys.RETURN)
     time.sleep(2)
 
-
 def swith_to_devshell_n(driver, devshell_n):
     # reset drive to top content
     driver.switch_to.default_content()
@@ -92,6 +91,7 @@ def main():
         login_cloudconsole(driver)
 
         # tab 1   ###############################
+        add_new_devshell(driver)
         swith_to_devshell_n(driver, 0)
         input_console_command(driver, "date")
         input_console_command(driver, "cd ~/ckquant/cloudshell")
@@ -109,8 +109,6 @@ def main():
         # close all connection  ##################
         time.sleep(100)
         input_console_command(driver, "exit")
-        time.sleep(1)
-        swith_to_devshell_n(driver, 0)
         input_console_command(driver, "exit")
         input_console_command(driver, "exit")
 
