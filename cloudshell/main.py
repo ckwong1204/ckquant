@@ -1,5 +1,5 @@
-import futuquant as ft
-#from futuquant.ck import ckTelegram
+import futu as ft
+#from futu.ck import ckTelegram
 import talib
 
 RSI_NUM = 14
@@ -65,9 +65,11 @@ def _example_cur_kline(quote_ctx):
     for code in stock_code_list:
         for ktype in [ft.SubType.K_WEEK]:  # ft.SubType.K_15M, ft.SubType.K_1M
             ret_code, ret_data = quote_ctx.get_cur_kline(code, 1000, ktype)
-            if ret_code == ft.RET_ERROR:
+            if ret_code == ft.RET_ERROR :
                 print(code, ktype, ret_data)
                 exit()
+            if ret_data.empty:
+                continue
             kline_table = ret_data
             print("%s KLINE %s" % (code, ktype))
             kline_table['rsi13'] = talib.RSI(kline_table['close'], RSI_NUM)
@@ -84,8 +86,8 @@ def _example_cur_kline(quote_ctx):
         outputMessage += i.note + '\n'
         
     print(""+outputMessage)
-    ckTelegram().send_message_group(outputMessage)
-#    ckTelegram().send_message_ck(outputMessage)
+        # ckTelegram().send_message_group(outputMessage)
+    ckTelegram().send_message_ck(outputMessage)
 
 if __name__ == "__main__":
     quote_ctx = ft.OpenQuoteContext()

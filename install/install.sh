@@ -26,7 +26,7 @@ sudo make install
 python3 -m pip install --upgrade Ta-Lib
 pip install numpy
 
-# install futuquant
-pip3 install futuquant
+# install futu
+pip3 install futu-api
 python3 -m pip install -r ~/ckquant/requirements.txt
 

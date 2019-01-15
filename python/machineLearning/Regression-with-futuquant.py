@@ -22,7 +22,7 @@ TIME_KEY = 'time_key'
 
 
 def getDataFromFutu(code='US.AMZN', start='2010-01-01'):
-    import futuquant as ft
+    import futu as ft
     quote_ctx = ft.OpenQuoteContext(host='127.0.0.1', port=11111)
     ret, data = quote_ctx.get_history_kline(code, start, end='2099-01-01', ktype='K_DAY')
     return data

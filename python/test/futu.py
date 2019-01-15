@@ -9,7 +9,7 @@ if __name__ == "__main__":
     # df = filterRSI()
     # df
 
-    import futuquant as ft
+    import futu as ft
     quote_ctx = ft.OpenQuoteContext(host='127.0.0.1', port=11111)
     # subscribe Kline
     stock_code_list = ["US.AAPL", "HK.00700"]
@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
 
 def get_DF_RSI():
-    import futuquant as ft
+    import futu as ft
     import talib
     quote_ctx = ft.OpenQuoteContext(host='127.0.0.1', port=11111)
     # ret, data = quote_ctx.get_history_kline('US.AMZN', start='2017-01-01', end='2018-08-17', ktype='K_30M')
@@ -53,7 +53,7 @@ def get_DF_RSI():
 
 
 def saveToCsv():
-    import futuquant as ft
+    import futu as ft
     quote_ctx = ft.OpenQuoteContext(host='127.0.0.1', port=11111)
     quote_ctx.subscribe(['US.AMZN'], [ft.SubType.K_30M])
     ret, data = quote_ctx.get_history_kline('US.AMZN', start='2017-01-01', end='2019-01-01', ktype='K_30M')
@@ -77,7 +77,7 @@ def loadCsv():
 
 
 def futubase():
-    import futuquant as ft
+    import futu as ft
     quote_ctx = ft.OpenQuoteContext(host='127.0.0.1', port=11111)
     quote_ctx.subscribe(['US.AMZN'], [ft.SubType.K_60M])
     c = quote_ctx.get_cur_kline('US.AMZN', 1000, ft.SubType.K_60M, ft.AuType.QFQ)
@@ -93,7 +93,7 @@ def addDateTime(df):
     return df
 
 def filterRSI():
-    import futuquant as ft
+    import futu as ft
     import talib
     quote_ctx = ft.OpenQuoteContext(host='127.0.0.1', port=11111)
     quote_ctx.subscribe(['US.AMZN'], [ft.SubType.K_60M])

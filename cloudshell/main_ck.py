@@ -19,7 +19,7 @@ class ckTelegram:
         s.send_message(s.T_CHATID_GROUP, message)
 
 
-import futuquant as ft
+import futu as ft
 import talib
 
 RSI_NUM = 13
@@ -58,6 +58,8 @@ def _example_cur_kline(quote_ctx):
             if ret_code == ft.RET_ERROR:
                 print("failure: ", stock_code, ktype)
                 exit()
+            if ret_data.empty:
+                continue
             print("%s KLINE %s success" % (stock_code, ktype))
 
             # code                         US.AMZN
@@ -84,14 +86,16 @@ def _example_cur_kline(quote_ctx):
 
 
 def print_result_dict(result_dict):
+    if not result_dict:
+        return
     import pandas as pd
     pd.options.display.float_format = "{:.2f}".format
     df = pd.DataFrame.from_dict(result_dict, orient='index')
     output_message = df.to_string(index=False)
     print(output_message)
 
-    ckTelegram().send_message_group(output_message)
-    # ckTelegram().send_message_ck(output_message)
+    # ckTelegram().send_message_group(output_message)
+    ckTelegram().send_message_ck(output_message)
 
 
 if __name__ == "__main__":

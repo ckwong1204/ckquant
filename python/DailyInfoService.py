@@ -1,4 +1,4 @@
-import futuquant as ft
+import futu as ft
 import pandas as pd
 import talib
 

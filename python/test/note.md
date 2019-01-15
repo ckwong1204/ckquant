@@ -23,7 +23,7 @@
 ## Google Console
 - download FutuOpenD_1.02_Ubuntu16.04.tar.gz from QQ and upload to Google Console 
 - run ```tar xf FutuOpenD_1.02_Ubuntu16.04.tar.gz```
-- ```python3 -m pip install futuquant```
+- ```python3 -m pip install futu```
 
 #### Talib in google Console
 - download ta-lib from https://mrjbq7.github.io/ta-lib/install.html
