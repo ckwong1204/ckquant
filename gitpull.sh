@@ -1,4 +1,4 @@
 #git stash save
-git reset --hard
-git pull
+git fetch --all
+git checkout --force -B "origin/master"
 git stash apply "stash@{0}"
