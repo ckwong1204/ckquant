@@ -4,8 +4,7 @@ cd ~/ta-lib/
 make
 sudo make install
 sudo python3 -m pip install --upgrade Ta-Lib
-sudo python3 -m pip uninstall -y numpy
-sudo python3 -m pip install futu-api
+sudo python3 -m pip install --upgrade futu-api
 
 
 
