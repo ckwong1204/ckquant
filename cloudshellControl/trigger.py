@@ -80,9 +80,12 @@ def add_new_devshell(driver):
 
 
 def main():
-    print("Trigger time: ", datetime.datetime.now(), calendar.day_name[datetime.datetime.today().weekday()])
     if datetime.datetime.today().weekday() > 4:
+        print("Trigger time: ", datetime.datetime.now(), ": No trigger for",
+              calendar.day_name[datetime.datetime.today().weekday()])
         return
+    else:
+        print("Trigger time: ", datetime.datetime.now(), calendar.day_name[datetime.datetime.today().weekday()])
 
     try:
         chrome_path = ".\chromedriver.exe"
@@ -107,7 +110,7 @@ def main():
         input_console_command(driver, "./f2_futu.sh")
 
         # close all connection  ##################
-        time.sleep(100)
+        time.sleep(600)
         input_console_command(driver, "exit")
         input_console_command(driver, "exit")
         input_console_command(driver, "exit")
