@@ -74,8 +74,7 @@ def swith_to_devshell_n(driver, devshell_n):
 
 def add_new_devshell(driver):
     driver.switch_to.default_content()
-    click(driver,
-          "body > pan-shell > div > div.pan-shell-main-container.layout-row.flex > div > div.layout-row > pan-lazy-loader > pan-dev-shell > div > div.p6n-devshell-header.p6n-action-bar > div:nth-child(5) > pan-devshell-new-tab-menu > div > jfk-button > pan-icon")
+    click(driver, "body > pan-shell > div > div.pan-shell-console-nav-container > pan-upgrade-panel-container > div > ng-transclude > div.pan-shell-help-sibling-panel.pan-upgrade-panel.pan-upgrade-panel-fill.pan-upgrade-panel-open.pan-upgrade-panel-color-white > div > div > ng-transclude > pan-upgrade-panel-container > div > ng-transclude > div.pan-shell-dev-shell-panel.pan-upgrade-panel.pan-upgrade-panel-color-white.pan-upgrade-panel-open > div > div > ng-transclude > pan-lazy-loader > pan-dev-shell > div > div.p6n-devshell-header.p6n-action-bar > div:nth-child(5) > pan-devshell-new-tab-menu > div > jfk-button > pan-icon > div > md-icon")
     time.sleep(10)
 
 
