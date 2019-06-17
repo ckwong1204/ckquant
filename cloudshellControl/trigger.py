@@ -49,7 +49,7 @@ def login_cloudconsole(driver):
     click(driver, '#identifierNext')
     time.sleep(1)
     fill(driver, '#password > div.aCsJod.oJeWuf > div > div.Xb9hP > input', "hkjayjay")
-    click(driver, '#passwordNext > content')
+    click(driver, '#passwordNext')
     time.sleep(60)
 
 
@@ -74,7 +74,7 @@ def swith_to_devshell_n(driver, devshell_n):
 
 def add_new_devshell(driver):
     driver.switch_to.default_content()
-    click(driver, "body > pan-shell > div > div.pan-shell-console-nav-container > pan-upgrade-panel-container > div > ng-transclude > div.pan-shell-help-sibling-panel.pan-upgrade-panel.pan-upgrade-panel-fill.pan-upgrade-panel-open.pan-upgrade-panel-color-white > div > div > ng-transclude > pan-upgrade-panel-container > div > ng-transclude > div.pan-shell-dev-shell-panel.pan-upgrade-panel.pan-upgrade-panel-color-white.pan-upgrade-panel-open > div > div > ng-transclude > pan-lazy-loader > pan-dev-shell > div > div.p6n-devshell-header.p6n-action-bar > div:nth-child(5) > pan-devshell-new-tab-menu > div > jfk-button > pan-icon > div > md-icon")
+    click(driver, "body > pan-shell > pcc-shell > div > div.pan-shell-console-nav-container > cfc-panel-container > div > div > cfc-panel.pan-shell-help-sibling-panel.cfc-panel.cfc-panel-center.cfc-panel-color-white.cfc-panel-orientation-vertical > div > div > cfc-panel-container > div > div > cfc-panel.pan-shell-dev-shell-panel.cfc-panel.cfc-panel-color-white.cfc-panel-orientation-horizontal > div > div.cfc-panel-content.cfc-has-divider > pcc-dev-shell-wrapper > xap-deferred-loader-outlet > pcc-dev-shell-upgrade-wrapper > pan-dev-shell-upgrade > pan-dev-shell > div > div.p6n-devshell-header.p6n-action-bar > div:nth-child(5) > pan-devshell-new-tab-menu > div > jfk-button")
     time.sleep(10)
 
 
