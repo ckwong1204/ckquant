@@ -85,9 +85,10 @@ def main():
         return
     else:
         print("Trigger time: ", datetime.datetime.now(), calendar.day_name[datetime.datetime.today().weekday()])
+    # print("Trigger time: ", datetime.datetime.now(), calendar.day_name[datetime.datetime.today().weekday()])
 
     try:
-        chrome_path = ".\chromedriver.exe"
+        chrome_path = "C:\Work\ck\Futu\ckquant\cloudshellControl\chromedriver.exe"
         driver = webdriver.Chrome(chrome_path)
 
         login_cloudconsole(driver)
@@ -117,7 +118,7 @@ def main():
         print("Trigger done: ", datetime.datetime.now())
 
     except:
-        print("Unexpected error:", sys.exc_info()[0])
+        print("Unexpected error:", datetime.datetime.now(), sys.exc_info()[0])
     finally:
         driver.quit()
 
