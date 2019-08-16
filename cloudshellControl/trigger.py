@@ -74,7 +74,7 @@ def swith_to_devshell_n(driver, devshell_n):
 
 def add_new_devshell(driver):
     driver.switch_to.default_content()
-    click(driver, "body > pan-shell > pcc-shell > div > div.pan-shell-console-nav-container > cfc-panel-container > div > div > cfc-panel.pan-shell-help-sibling-panel.cfc-panel.cfc-panel-center.cfc-panel-color-white.cfc-panel-orientation-vertical > div > div > cfc-panel-container > div > div > cfc-panel.pan-shell-dev-shell-panel.cfc-panel.cfc-panel-color-white.cfc-panel-orientation-horizontal > div > div.cfc-panel-content.cfc-has-divider > pcc-dev-shell-wrapper > xap-deferred-loader-outlet > pcc-dev-shell-upgrade-wrapper > pan-dev-shell-upgrade > pan-dev-shell > div > div.p6n-devshell-header.p6n-action-bar > div:nth-child(5) > pan-devshell-new-tab-menu > div > jfk-button")
+    click(driver, "body > pan-shell > pcc-shell > cfc-panel-container > div > div > cfc-panel > div.cfc-panel-content-wrapper.cfc-panel-side-center > div > div.pan-shell-console-nav-container.ng-star-inserted > cfc-panel-container > div > div > cfc-panel.pan-shell-help-sibling-panel.cfc-panel.cfc-panel-center.cfc-panel-color-white.cfc-panel-orientation-vertical > div > div > cfc-panel-container > div > div > cfc-panel.pan-shell-dev-shell-panel.cfc-panel.cfc-panel-color-white.cfc-panel-orientation-horizontal > div > div.cfc-panel-content.cfc-has-divider > pcc-dev-shell-wrapper > xap-deferred-loader-outlet > pcc-dev-shell-upgrade-wrapper > pan-dev-shell-upgrade > pan-dev-shell > pan-dev-shell-impl > div > div.p6n-devshell-header.p6n-action-bar > div:nth-child(5) > pan-devshell-new-tab-menu > div > jfk-button > pan-icon")
     time.sleep(10)
 
 

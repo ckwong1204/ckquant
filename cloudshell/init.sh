@@ -5,6 +5,7 @@ make
 sudo make install
 sudo python3 -m pip install --upgrade Ta-Lib
 sudo python3 -m pip install --upgrade futu-api
+sudo python3 -m pip install --updrade python-telegram-bot --user
 
 
 
